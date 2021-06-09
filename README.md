@@ -12,7 +12,15 @@ Każdy posiada 3 życia, które traci się wpadając w przeszkodę.
 **Python 3.8.3** - program, którego używam do stworzenia całej gry 
 **Pygame** - podstawowa biblioteka do tworzenia gier arkadowych
 ### How to run this app?
-1. Clone the template project, replacing my-project with the name of the project you are creating: 
-`git clone https://github.com/seanfisk/python-project-template.git my-project`
-`cd my-project `
-2. 
+1. Klonowanie projektu:
+`git clone https://github.com/karoolaaa/python_game.git gra`
+
+
+2. Wejście do folderu z grą:
+`cd gra `
+
+3. Zainstaluj odpowiednie wymagania:
+`pip install -r requirements.txt`
+
+4.Uruchom grę:
+`python gra.py`
