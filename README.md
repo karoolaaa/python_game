@@ -4,6 +4,8 @@
 
 ### Short description:
 Jestem studentką na Politechnice Wrocławskiej i przygotowałam projekt z prostą grą arkadową napisaną w języku Python 3.
+W grze należy zdobyć jak najwięcej punktów, przeskakując dinozaurem przez lecące przeszkody. Do skakania służy spacja natomiast, aby poruszać się w prawo, lewo strzałki.
+Każdy posiada 3 życia, które traci się wpadając w przeszkodę.
 
 
 ### Technologies
