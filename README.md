@@ -1,5 +1,5 @@
 
-# Title: Prosta Gra 
+# Title: Prosta gra arkadowa
 ## Author: Karolina Muciek
 
 ### Short description:
