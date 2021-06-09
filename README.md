@@ -3,11 +3,11 @@
 ## Author: Karolina Muciek
 
 ### Short description:
-Jestem studentką na Politechnice Wrocławskiej i przygotowałam projekt z prostą grą arkadową napisaną w bibliotece pygame.
+Jestem studentką na Politechnice Wrocławskiej i przygotowałam projekt z prostą grą arkadową napisaną w języku Python 3.
 
 
 ### Technologies
-**Python** - program, którego używam do stworzenia całej gry 
+**Python 3.8.3** - program, którego używam do stworzenia całej gry 
 **Pygame** - podstawowa biblioteka do tworzenia gier arkadowych
 ### How to run this app?
 1. Clone the template project, replacing my-project with the name of the project you are creating: 
