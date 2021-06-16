@@ -25,9 +25,9 @@ tile_size = 50
 
 #podanie ścieżek do plików
 path_bg = 'pustynia.jpg'
-path_player = 'dinozaur.jpg'
+path_player = 'dinozaur1.png'
 path_wyniki = "results.txt"
-path_FO = "ptaszek.jpg"
+path_FO = "ptaszek1.png"
 path_sound = "sound.mp3"
 
 sound_hit = pygame.mixer.Sound(path_sound)
@@ -100,7 +100,7 @@ class FlyingObject():        #tworzę klasę FlyingObject odpowiedzialną za prz
 
     def update(self):    
         self.rect.x -= 5    #za każdym wywołaniem przesuwa o 5 w lewo
-        if self.rect.x == 0:  
+        if self.rect.x <= 0:  
             self.rect.x = screen_width #cofnięcie do prawej strony
             self.wynik += 1  #dodanie punktu do wyniku
         screen.blit(self.image, self.rect)
@@ -176,10 +176,12 @@ fopen.close()
 
 
 
-
+delay = 0
 gramy = False
 run = True
 while run:
+    
+    delay = 0
     if not gramy:
         screen.fill(bg)  #wypełnienie okna kolorem beżowym
     
@@ -190,46 +192,61 @@ while run:
         if wyjscie.draw_button():
              run = False
         if autor.draw_button():
+            delay = 1
             autor_img = font.render("Karolina, Wrocław", True, red)
             screen.blit(autor_img, (screen_width/2+50, 50))
             counter += 1
         if zasady.draw_button():
+            delay = 1
             zasady_img = font.render("Zasady w README", True, red)
             screen.blit(zasady_img, (screen_width/2+50, 50))
             counter += 1
         if wyniki.draw_button():
+            delay = 1
             zasady_img = font.render("Najlepsze wyniki = " + str(bestr), True, red)
             screen.blit(zasady_img, (screen_width/2 + 50, 50))
             counter += 1
 
     if gramy:
+        
+                
         img = pygame.transform.scale(bg_img, (screen_width, screen_height))
         screen.blit(img, (0, 0))
         player.update()
         FO.update()
         
+        zycie_img = font.render("Ilość żyć = " + str(player.hp), True, red)
+        screen.blit(zycie_img, (screen_width/2 - 50, 2))
+        
         #analiza czy dwa obiekty nachodzą na siebie
         # jeżeli współrzędne x się nie pokrywają to obiekty na siebie nie zachodzą
         #jeżeli x się pokrywają to sprawdzamy czy współrzędne y się pokrywają
-        if (player.rect.x + 40 - FO.rect.x) > 5 and (FO.rect.y - player.rect.y - player.rect.height < 20  ):
+        if (not ((FO.rect.x > player.rect.x + player.rect.width) or (FO.rect.x + FO.rect.width< player.rect.x)) ) and ( player.rect.y + player.rect.height > FO.rect.y  ):
             player.hit()
             FO.rect.x = screen_width     #ustawia obiekt FO spowrotem po prawej stronie
         
         if player.hp == 0:   
             gramy = False  
+            gameo_img = font.render("Game Over", True, red)
+            screen.blit(gameo_img, (screen_width/2 - 50, 30))
+            delay = 2
+                                    
             player.hp = 3
             if FO.wynik > bestr:  #zapisanie najlepszego wyniku
                 bestr = FO.wynik
                 fopen = open(path_wyniki,"w")
                 fopen.write(str(FO.wynik))
                 fopen.close()
+       
+        wynik_img = font.render("wynik = " + str(FO.wynik), True, red)
+        screen.blit(wynik_img, (screen_width/2 + 80, 2))       
                 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
 
     clock.tick(60)        #opóźnienie działania pętli while
-            
+    
     pygame.display.update()
-
+    pygame.time.delay(delay*1000)
 pygame.quit()
